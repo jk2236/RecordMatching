@@ -6,5 +6,5 @@
 * [VCFtools](https://vcftools.github.io/index.html)
 
 ### Dataset
-HGDP SNP-STR data containing 872 individuals can be found [here](https://rosenberglab.stanford.edu/data/edgeEtAl2017/unphased_all_vcf.zip).
+HGDP SNP-STR data containing 872 individuals can be downloaded from [here](https://rosenberglab.stanford.edu/data/edgeEtAl2017/unphased_all_vcf.zip).
 
