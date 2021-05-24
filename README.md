@@ -1,5 +1,6 @@
 # Record Matching
 
+### Description
 
 ### System Requirements
 RecordMatching requires:
@@ -16,6 +17,8 @@ require(devtools)
 install_github("jk2236/RecordMatching")
 library(RecordMatching)
 ```
+
+### Demo / examples
 
 
 ### Reference
