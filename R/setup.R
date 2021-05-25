@@ -13,6 +13,7 @@ setup <- function(save.dir, bgl.jar, vcf.exe) {
     # 2nd column: chr number
    
     if (!require(clue)) install.packages("clue")
+    if (!require(plyr)) install.packages("plyr")
     
     # assign("base.dir", base.dir, envir=.RMEnv)
     assign("save.dir", save.dir, envir=.RMEnv)
@@ -22,7 +23,7 @@ setup <- function(save.dir, bgl.jar, vcf.exe) {
     cat('\n')
     cat(strrep("=", 60))
     cat("\n---- Base path setup for Record Matching ----\n")
-    cat("\n    Save directory for output: \n") 
+    cat("\n    Save directory for outputs: \n") 
     cat(strrep(" ", 8), save.dir)
     cat("\n    BEAGLE jar file (including full path):\n")
     cat(strrep(" ", 8), bgl.jar)

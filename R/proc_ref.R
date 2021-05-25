@@ -1,15 +1,34 @@
-
-## This function phase reference vcf file.
-#  If the reference panel is unphased, phase with BEAGLE.
-#  From reference panel, allele frequencies of the STR is estimated
-#  and saved as a file. 
-#  The phased reference file is to be used as a reference panel 
-#  for BEAGLE imputation.
-## Input 
-#   ref.f: vcf file containing reference data
-# 
+#' Phase reference vcf file.
+#'
+#' This function phase reference vcf file (`ref.f`) with `BEAGLE`.
+#' The phased reference file is to be used as a reference panel for `BEAGLE` imputation.
+#' 
+#' @param snp.f A name (including full path) of a file containing SNPs. 
+#'              Must be a standard vcf format. 
+#' @param ref.f A name (including full path) of a file containing SNP-STR
+#'              haplotypes to be used as a reference panel for imputation.
+#'              Note that the reference panel must be phased and have no
+#'              missing values.
+#' @param map.f A name (including full path) of a file genetic map in plink format.
+#' @param marker Name of a STR locus to be imputed. 
+#' @param nthreads (positive integer) Number of threads for BEAGLE, default=1.
+#' @param niterations (positive integer) Number of phasing iterations in BEAGLE, default=10.
+#' @param maxlr (number ≥ 1) The maximum likelihood ratio at a genotype, default=1000000.
+#' @param lowmem (true/false) Whether a memory efficient algorithm should be used, default=false.
+#' @param window (positive integer) The number of markers to include in each sliding window, default=50000.
+#' @param overlap (positive integer) The number of markers of overlap between sliding windows, default=3000.
+#' @param cluster (non-negative number) The maximum cM distance between individual markers that are 
+#'                combined into an aggregate marker when imputing ungenotyped markers, default=0.005.
+#' @param ne (integer) The effective population size when imputing ungenotyped markers, default=1000000.
+#' @param err (nonnegative number) The allele miscall rate, default=0.0001.
+#' @param seed (integer) The seed for the random number generator, default=-99999.
+#' @param modelscale (positive number) the model scale parameter when sampling haplotypes 
+#'                   for unrelated individuals, default=0.8.
+#'
+#' @return None
+#' @export
 phase.ref <- function(ref.f, 
-                      niterations=10, nthreads=1,
+                      nthreads=1, niterations=10, 
                       lowmem='false', window=50000, overlap=3000,
                       impute='true', cluster=0.005, gprobs='false',
                       ne=1000000, err=0.0001, seed=-99999, modelscale=0.8) {
@@ -32,8 +51,8 @@ phase.ref <- function(ref.f,
     beag.str <- paste("java -Xmx2g -jar ", bgl.jar, 
                       " gt=", ref.f,
                       " out=", out.pre,  
-                      " niterations=", as.character(niterations), 
                       " nthreads=", as.character(nthreads), 
+                      " niterations=", as.character(niterations), 
                       " lowmem=", as.character(lowmem), 
                       " window=", as.character(window),
                       " overlap=", as.character(overlap),

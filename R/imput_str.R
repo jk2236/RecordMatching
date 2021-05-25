@@ -1,16 +1,51 @@
 
 
+#' Impute STR genotypes from surrounding SNPs and extract imputed STR genotypes and genotype probabilites.
+#'
+#' This function imputes genotypes of individuals at a STR `marker` locus from its 
+#' surrounding SNPs `snp.f` using a reference panel `ref.f` and a genetic map `map.f`. 
+#' 
+#' @param snp.f A name (including full path) of a file containing SNPs. 
+#'              Must be a standard vcf format. 
+#' @param ref.f A name (including full path) of a file containing SNP-STR
+#'              haplotypes to be used as a reference panel for imputation.
+#'              *Note that the reference panel must be phased and have no
+#'              missing values.*
+#' @param map.f A name (including full path) of a file genetic map in plink format.
+#' @param marker Name of a STR locus to be imputed. 
+#' @param nthreads (positive integer) Number of threads for BEAGLE, default=1.
+#' @param niterations (positive integer) Number of phasing iterations in BEAGLE, default=10.
+#' @param maxlr (number ≥ 1) The maximum likelihood ratio at a genotype, default=1000000.
+#' @param lowmem (true/false) Whether a memory efficient algorithm should be used, default=false.
+#' @param window (positive integer) The number of markers to include in each sliding window, default=50000.
+#' @param overlap (positive integer) The number of markers of overlap between sliding windows, default=3000.
+#' @param cluster (non-negative number) The maximum cM distance between individual markers that are 
+#'                combined into an aggregate marker when imputing ungenotyped markers, default=0.005.
+#' @param ne (integer) The effective population size when imputing ungenotyped markers, default=1000000.
+#' @param err (nonnegative number) The allele miscall rate, default=0.0001.
+#' @param seed (integer) The seed for the random number generator, default=-99999.
+#' @param modelscale (positive number) the model scale parameter when sampling haplotypes 
+#'                   for unrelated individuals, default=0.8.
+#'
+#' @return None
+#' 
+#' @details 
+#' This function imputes genotypes of individuals at a STR `marker` locus from its 
+#' surrounding SNPs `snp.f` using a reference panel `ref.f` and a genetic map `map.f`. 
+#' *The reference panel should be phased and have no missing values.* 
+#' The imputed and phased SNP-STR vcf file is stored at `(save.dir)/imputed_str` where 
+#' the `save.dir` was set by running \code{\link{setup}} in the beginning of the pipeline.
+#' From the imputed SNP-STR vcf, the function extracts imputed genotypes and genotype probabilities
+#' at the STR `marker` locus and save it in the `(save.dir)/imputed_str` folder. 
+#' 
+#' @seealso 
+#' \href{https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf}{BEAGLE manual}.
+#' @export
 impute.str <- function(snp.f, ref.f, map.f, marker,
-                       niterations=10, nthreads=1,
+                       nthreads=1, niterations=10, 
                        maxlr=1000000, lowmem='false', window=50000, 
                        overlap=3000, cluster=0.005, ne=1000000, 
                        err=0.0001, seed=-99999, modelscale=0.8) {
-    ##
-    # snp.f: File containing SNPs without STR
-    # ref.f: File containing reference panel for imputation. 
-    #        Must be phased and have no missing values.
-    # map.f: Genetic map file. plink.GRCh36.map downloaded from BEAGLE site.
-    # marker: STR marker name being imputed
     
     check.setup()
     save.dir <- get("save.dir", envir=.RMEnv)
@@ -33,8 +68,8 @@ impute.str <- function(snp.f, ref.f, map.f, marker,
                       " ref=", ref.f,
                       " map=", map.f, 
                       " gprobs=true impute=true",
-                      " niterations=", as.character(niterations), 
                       " nthreads=", as.character(nthreads), 
+                      " niterations=", as.character(niterations), 
                       " maxlr=", as.character(maxlr),
                       " lowmem=", as.character(lowmem), 
                       " window=", as.character(window),
