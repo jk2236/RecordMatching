@@ -15,8 +15,8 @@ RecordMatching requires:
 
 ### Installation
 ```R
-require(devtools)
-install_github("jk2236/RecordMatching")
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("jk2236/RecordMatching")
 library(RecordMatching)
 ```
 
