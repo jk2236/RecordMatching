@@ -10,6 +10,7 @@ RecordMatching requires:
 
 ### Dataset
 * HGDP SNP-STR data containing 872 individuals can be downloaded from [here](https://rosenberglab.stanford.edu/data/edgeEtAl2017/unphased_all_vcf.zip).
+* Human genetic maps. HapMap GrCh36 and GrCh37 genetic maps in PLINK format. Can be downloaded from [BEAGLE page](http://bochet.gcc.biostat.washington.edu/beagle/genetic_maps/).
 * All genotypes in the reference panel must be **non-missing and phased** for BEAGLE imputation. 
 
 ### Installation
