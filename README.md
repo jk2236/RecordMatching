@@ -2,6 +2,9 @@
 
 ### Description
 
+### Platform
+Tested on Mac and Linux
+
 ### System Requirements
 RecordMatching requires:
 * [BEAGLE 4.1](https://faculty.washington.edu/browning/beagle/b4_1.html) 
