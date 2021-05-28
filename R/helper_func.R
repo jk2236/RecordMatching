@@ -49,7 +49,7 @@ read.al.freq <- function(filename) {
 }
 
 
-read.gt <- function(filename, phased=T) {
+read.gt <- function(filename) {
     # This function reads files containing genotypes from BEAGLE.
     # Note that the allele indexing starts from "0" from BEAGLE.
     # Input: 
@@ -64,13 +64,13 @@ read.gt <- function(filename, phased=T) {
     
     # stopifnot(strsplit(filename, "\\.")[[1]][2] == 'GT') # check input format
     
-    if (phased) {
-        split.char <- '|'
-    } else {
-        split.char <- '/'
-    }
-    
     gt.str <- read.table(filename, head=T, as.is=T, na.strings=c("NA","-9"))
+    
+    if (length(which(strsplit(as.character(gt.str[3]), "")[[1]]=='|')) != 0) {
+        split.char <- '|' 
+    } else {
+        split.char <- '/' 
+    }
     gt.data <- matrix(as.numeric(unlist(sapply(gt.str[-c(1,2)], strsplit, 
                                                split=split.char, fixed=T))),
                       ncol=2, byrow=T)

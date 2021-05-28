@@ -221,7 +221,7 @@ const.ibd.mat <- function(al.freq.vec, del.vec) {
     
     # Input format check
     stopifnot(length(del.vec) == 9)
-    stopifnot(round(sum(al.freq.vec), digits=15) == 1)
+    stopifnot(round(sum(al.freq.vec), digits=12) == 1)
     
     # Initialize variables
     n.al <- length(al.freq.vec)

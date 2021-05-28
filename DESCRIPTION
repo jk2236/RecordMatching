@@ -9,7 +9,7 @@ Authors@R: c(
           ),
     person(given = "Noah",
     	   family = "Rosenberg",
-	   role = c("aut", "cre"),
+	   role = c("aut"),
 	   email = "noahr@stanford.edu")
 	   )
 Description: What the package does (one paragraph).
