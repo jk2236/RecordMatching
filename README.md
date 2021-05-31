@@ -1,9 +1,10 @@
 # Record Matching
 
 ### Description
+**TBC**
 
 ### Platform
-Tested on Mac and Linux
+Tested on Mac and Linux only. 
 
 ### System Requirements
 RecordMatching requires:
@@ -26,6 +27,7 @@ library(RecordMatching)
 ```
 
 ### Demo / examples
+See package vignettes.
 
 
 ### Reference
