@@ -82,7 +82,7 @@ phase.ref <- function(ref.f,
     cat('\n')
     cat(strrep("=", 70))
     cat("\n    The phased reference file has been saved to:\n")
-    cat(strrep(" ", 5), paste(out.pre, '.vcf', sep=''), "\n")
+    cat(strrep(" ", 5), paste0(out.pre, '.vcf'), "\n")
     cat(strrep("=", 70))
     cat("\n")
 
@@ -123,17 +123,16 @@ ref.al.freq <- function(ref.f, marker) {
 
     out.pre <- file.path(al.save.dir, paste('ref_', marker, sep=''))
 
-    cat("\n---- Computing reference panel allele frequency ----\n\n")
+    cat("\n---- Computing STR allele frequency in the reference panel ----\n\n")
     vcftools.str <- paste(vcf.exe, " --vcf ", ref.f,
                           " --snp ", marker,
                           " --freq --out ", out.pre, sep = "")
     system(vcftools.str)
 
-    cat('\n')
     cat(strrep("=", 70))
-    cat("\n", strrep(" ", 3), "The allele frequency of marker", marker,
+    cat("\n", strrep(" ", 3), "The allele frequency of STR marker", marker,
         "\n", strrep(" ", 3), "in the reference panel has been saved to: \n")
-    cat(strrep(" ", 5), paste(out.pre, '.frq', sep=''), "\n")
+    cat(strrep(" ", 5), paste0(out.pre, '.frq'), "\n")
     cat(strrep("=", 70))
     cat("\n")
 }

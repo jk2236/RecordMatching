@@ -4,13 +4,21 @@
 \alias{setup}
 \title{Compute match accuracies.}
 \usage{
-setup(base.dir, bgl.jar, vcf.exe)
+setup(base.dir, save.dir, bgl.jar, vcf.exe)
 }
 \arguments{
-\item{base.dir}{Folder for input data. Output files are also saved in this folder.}
+\item{base.dir}{Full path of the base folder of the pipeline.
+All the output of the pipeline will be saved here.
+If the folder doesn't exist, it's automatically created.}
+
+\item{bgl.jar}{Full path to beagle executable.
+Format must be: (full path to dir)/beagle.(version).jar.
+version is the Beagle version code (eg. “01Oct15.6a3”).}
+
+\item{vcf.exe}{Full path to vcftools executable.}
 }
 \value{
-
+None
 }
 \description{
 insert desc

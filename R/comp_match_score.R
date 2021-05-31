@@ -20,6 +20,12 @@ cott.to.jacq <- function(cott.vec) {
 }
 
 
+check.gt.format <- function(gt.f) {
+    ## This function checks if gt.f is in the correct format.
+    ## TBC
+}
+
+
 #' Compute match score matrix based on a single STR locus.
 #'
 #' insert description.

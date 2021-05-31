@@ -107,10 +107,10 @@ impute.str <- function(snp.f, ref.f, map.f, marker,
     cat('\n')
     cat(strrep("=", 70))
     cat("\n    The imputed vcf file has been saved to:\n")
-    cat(strrep(" ", 5), paste(out.pre, '.vcf', sep=''), "\n")
+    cat(strrep(" ", 5), paste0(out.pre, '.vcf'), "\n")
 
     cat("\n    The imputed STR genotype probabilities have been saved to:\n")
-    cat(strrep(" ", 5), paste(out.pre2, '.GP.FORMAT', sep=''), "\n")
+    cat(strrep(" ", 5), paste0(out.pre2, '.GP.FORMAT'), "\n")
 
     cat(strrep("=", 70))
     cat("\n")
