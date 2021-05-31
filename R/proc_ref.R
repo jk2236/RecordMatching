@@ -128,6 +128,7 @@ ref.al.freq <- function(ref.f, marker) {
                           " --freq --out ", out.pre, sep = "")
     system(vcftools.str)
 
+    cat("\n")
     cat(strrep("=", 70))
     cat("\n", strrep(" ", 3), "The allele frequency of STR marker", marker,
         "\n", strrep(" ", 3), "in the reference panel has been saved to: \n")

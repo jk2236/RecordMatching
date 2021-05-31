@@ -103,6 +103,7 @@ impute.str <- function(snp.f, ref.f, map.f, marker,
                             " --out ", out.pre2, sep = "")
     system(vcftools.str.2)
 
+    cat("\n")
     cat(strrep("=", 70))
     cat("\n    The imputed vcf file has been saved to:\n")
     cat(strrep(" ", 5), paste0(out.pre, '.vcf'), "\n")
