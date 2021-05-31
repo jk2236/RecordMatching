@@ -79,7 +79,6 @@ phase.ref <- function(ref.f,
     system("gunzip *.gz")
     setwd(curr.dir)
 
-    cat('\n')
     cat(strrep("=", 70))
     cat("\n    The phased reference file has been saved to:\n")
     cat(strrep(" ", 5), paste0(out.pre, '.vcf'), "\n")

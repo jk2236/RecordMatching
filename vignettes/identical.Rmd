@@ -7,7 +7,6 @@ vignette: >
   %\VignetteIndexEntry{identical}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-
 ---
 
 ```{r, include=FALSE}
@@ -17,39 +16,12 @@ knitr::opts_chunk$set(
 )
 devtools::load_all()
 library(knitr)
-```
-
-
-```{r setup}
 library(RecordMatching)
 ```
 
 ## Overview
 This vignette demonstrates record-matching between SNP profiles to STR profiles when two samples are from the identical individual using linkage disequilibrium between samples. 
-
-In this example, we will use the following 13 CODIS loci.
-```{r}
-marker.f <- system.file("extdata", "marker_positions.txt",
-                        package="RecordMatching", mustWork=TRUE)
-marker.info <- read.table(marker.f, header=TRUE, as.is=TRUE)
-```
-
-```{r echo=FALSE}
-kable(marker.info)
-```
-
-One can include specific loci only by subsetting the `marker.info` as shown below. For a quick testing of the pipeline, start with one locus. In general, including more loci results in the better record-matching accuracy. 
-
-```{r}
-loci.include <- c(1)
-marker.info <- marker.info[loci.include,]
-```
-
-```{r echo=FALSE}
-cat("Loci chosen:", marker.info$name)
-```
-
-
+(insert a lot more overview)
 
 ## Setup
 ### External software requirements
@@ -69,32 +41,61 @@ We first need to set the base directory where the output files of the record mat
 
 The above variables will be used in all functions in the record-matching pipeline. To run this vignette, change the paths below to  
 
+```{r, eval=FALSE}
+setup(base.dir='(path to local save directory)',
+      bgl.jar='(full path to dir)/beagle.(version).jar',
+      vcf.exe='(full path to dir)/vcftools')
+```
 
-```{r}
-setup(base.dir='/Users/jaehee/Desktop/RM_prog/twin_test',
-      bgl.jar='/Users/jaehee/Desktop/RM_prog/beagle.27Jan18.7e1.jar',
+
+```{r, echo=FALSE, message=FALSE, results='hide'}
+setup(base.dir='/Users/Shared/RM/twin_test',
+      bgl.jar='/Users/Shared/RM/beagle.27Jan18.7e1.jar',
       vcf.exe='/usr/local/bin/vcftools')
 ```
 
 
 ### Input files requirements
+Each file should contain information about single STR locus and/or its surrounding SNPs only.
 
-In addition, 
+* `ref.f`: A file containing STR-SNP genotypes in standard vcf format. If it's unphased, it must be phased first using `phase.ref` before applying it to `impute.str` function. 
+* `snp.f`: A file containing SNP genotypes in 1-Mb SNP windows extending 500 kb in each direction from the STR midpoint. Must be in standard vcf format.
+* `str.f`: A file containing STR genotypes at a STR locus. Must be a a `GT` file format of `vcftools`. The first column should be a chromosome and the second column should be a marker genomic position. The sample data starts from the third column. The first row should be a header and the second row should be data. The genotype can be either a phased or unphased format.
 
+In addition, HapMap GrCh36, GrCh37, or GrCh38 genetic maps with cM units in PLINK format are required. Each file (`map.f`) should contain a map file of a single chromosome. They can be downloaded from the [BEAGLE web](http://bochet.gcc.biostat.washington.edu/beagle/genetic_maps/).
 
+In this vignette, all the above files are provided as a package data. 
 
+### Markers
+In this example, we will use the following 13 CODIS loci.
+```{r}
+marker.f <- system.file("extdata", "marker_positions.txt",
+                        package="RecordMatching", mustWork=TRUE)
+marker.info <- read.table(marker.f, header=TRUE, as.is=TRUE)
+```
 
+```{r echo=FALSE}
+kable(marker.info)
+```
 
+One can include specific loci only by subsetting the `marker.info` as shown below. For a quick testing of the pipeline, start with one locus. In general, including more loci results in the better record-matching accuracy. In this vignette, all 13 available CODIS loci are used. 
+
+```{r eval=FALSE}
+loci.include <- c(1, 3)
+marker.info <- marker.info[loci.include,]
+```
+
+```{r echo=FALSE}
+n.loci <- dim(marker.info)[1]
+```
 
 
 ## Phase SNP-STR reference panel
-**The reference panel must be phased and have no missing values**.
+If the reference panel is unphased, it must be phased first using `BEAGLE`. Any missing values are also imputed in this step. `phase.ref` function saves the output phased reference panel to `(base.dir)/ref_phased` directory. The output file name is the same as `ref.f` but with `_phs` postfix.
 
+From the STR-SNP reference panel, each STR marker's allele frequency is computed using `ref.al.freq` function. The output is saved to `(base.dir)/ref_alfrq` directory. Each marker's allele frequency file has `ref_(marker name).frq` format.
 
-Phase reference panel and extract allele frequencies at STR loci.  
-If the reference panel is unphased, it must be phased first using 
-
-```{r}
+```{r results='hide'}
 for (m in marker.info$name) {
     ref.f <- system.file("extdata", "twin_test", "reference",
                          paste0("ref_", m, ".vcf"),
@@ -109,11 +110,12 @@ for (m in marker.info$name) {
 ```
 
 
-
 ## Impute reference panel and compute imputed genotype probabilities
+We now impute genotypes of individuals at a STR `marker` locus from its surrounding SNPs `snp.f` using a reference panel `ref.f` and a genetic map `map.f`by running `impute.str` function. Note that **the reference panel must be phased and have no missing values** for imputation with `BEAGLE`.
 
+The imputed and phased SNP-STR vcf file is stored at `(base.dir)/imputed_str` where the `base.dir` was set by running `setup` at the beginning of the pipeline. From the imputed SNP-STR haplotype, the `impute.str` function also extracts imputed genotypes and genotype probabilities at the STR locus and save it in the `(base.dir)/imputed_str` folder. The output file name containing imputed genotypes probabilities is `imp_str_(marker name).GP.FORMAT`.
 
-```{r, eval=FALSE}
+```{r eval=TRUE, results='hide'}
 for (i in 1:dim(marker.info)[1]) {
     m <- marker.info$name[i]
     chr <- marker.info$chr[i]
@@ -134,9 +136,10 @@ for (i in 1:dim(marker.info)[1]) {
 
 
 ## Compute match score matrix 
-Iterate over markers and add them to get the final match score matrix using 13 CODIS loci. 
+Iterate over markers and add them to get the final match score matrix using `r n.loci` CODIS loci. 
+(insert reference to Cell paper figure) (insert explanation about Cotterman identity coefficients.)
 
-```{r}
+```{r results='hide'}
 cott.vec <- c(0,0,1) # same individual
 # cott.vec <- c(0.25, 0.5, 0.25) # sib pairs
 # cott.vec <- c(0,1,0) # parent-offspring
@@ -145,7 +148,6 @@ llr.single.irt <- list()
 
 for (i in 1:dim(marker.info)[1]) {
     m <- marker.info$name[i]
-    print(paste("Processing marker", m, ",", i, "out of", length(marker.info$name)))
     str.f <- system.file("extdata", "twin_test", "STR",
                          paste("str_", m, ".GT.FORMAT", sep=''),
                          package="RecordMatching", mustWork=TRUE)
@@ -157,7 +159,8 @@ mat <- Reduce('+', llr.single.irt)
 ```
 
 
-The match score matrix using 
+The match score matrix using `r n.loci` loci.
+
 ```{r mat-plot, dev='png', echo=FALSE, out.width="50%", fig.align='center'}
 par(mar=c(1,1,0,0))
 image(mat, axes=FALSE, asp=1, frame.plot=FALSE)
@@ -166,12 +169,18 @@ mtext('SNP Profile', side=2)
 ```
 
 
+## Compute match accuracies
 Compute match accuracies.
+(insert details of each matching scheme)
+
 ```{r}
 match.acc <- comp.match.acc(mat)
-print(match.acc)
 ```
 
+```{r echo=FALSE}
+match.acc <- comp.match.acc(mat)
+kable(match.acc)
+```
 
 
 

@@ -34,7 +34,6 @@ setup <- function(base.dir, save.dir, bgl.jar, vcf.exe) {
     assign("bgl.jar", bgl.jar, envir=.RMEnv)
     assign("vcf.exe", vcf.exe, envir=.RMEnv)
 
-    cat('\n')
     cat(strrep("=", 60))
     cat("\n---- Base path setup for Record Matching ----\n")
     cat("\n    Data directory and save directory for outputs: \n")
