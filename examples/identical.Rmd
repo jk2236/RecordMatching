@@ -1,5 +1,5 @@
 ---
-title: "Record Marching of identical individuals"
+title: "Record matching of identical individuals"
 # output: rmarkdown::pdf_document
 output: rmarkdown::html_document
 author: "Jaehee Kim"
