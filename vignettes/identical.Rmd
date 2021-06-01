@@ -48,7 +48,7 @@ setup(base.dir='(path to local save directory)',
 
 To run this vignette, set the environment variables using `setup` function as shown below:
 
-```{r, echo=FALSE, message=FALSE, results='hide'}
+```{r, echo=FALSE}
 setup(base.dir='/Users/Shared/RM/twin_test',
       bgl.jar='/Users/Shared/RM/beagle.27Jan18.7e1.jar',
       vcf.exe='/usr/local/bin/vcftools')
