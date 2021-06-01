@@ -8,7 +8,7 @@ While the package can be run on any platform, it has been extensively tested on 
 
 ### System Requirements
 * [BEAGLE 4.1](https://faculty.washington.edu/browning/beagle/b4_1.html) 
-* Java version 8 - required by BEAGLE. See [BEAGLE 4.1 manual](https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf) for details.
+* Java version 8 - required by BEAGLE. See [BEAGLE manual](https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf) for details.
 * [VCFtools](https://github.com/vcftools/vcftools). `conda` version is also available [here](https://anaconda.org/bioconda/vcftools).
 
 ### Dataset
