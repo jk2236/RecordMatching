@@ -18,10 +18,16 @@
 #' @export
 setup <- function(base.dir, save.dir, bgl.jar, vcf.exe) {
     if (!require(clue)) {
-        message()
+        message("Required package 'clue' is missing. Installing now...")
         install.packages("clue")
     }
-    if (!require(plyr)) install.packages("plyr")
+    if (!require(plyr)) {
+        message("Required package 'plyr' is missing. Installing now...")
+        install.packages("plyr")
+    }
+
+
+
 
     if (!dir.exists(base.dir)) {
         dir.create(base.dir)

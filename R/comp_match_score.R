@@ -20,10 +20,10 @@ cott.to.jacq <- function(cott.vec) {
 }
 
 
-check.gt.format <- function(gt.f) {
-    ## This function checks if gt.f is in the correct format.
-    ## TBC
-}
+# check.gt.format <- function(gt.f) {
+#     ## This function checks if gt.f is in the correct format.
+#     ## TBC
+# }
 
 
 #' Compute match score matrix based on a single STR locus.
@@ -66,12 +66,12 @@ comp.match.mat <- function(cott.vec, marker, str.f) {
 
 
     # Allele frequency from training set
-    al.freq.filename <- file.path(base.dir,
-                                  paste('ref_alfrq/ref_', marker, '.frq', sep=''))
+    al.freq.filename <- file.path(base.dir, 'ref_alfrq',
+                                  paste('ref_', marker, '.frq', sep=''))
 
     # STR genotype probability from imputation (BEAGLE) of B
-    gp.filename <- file.path(base.dir,
-                             paste('imputed_str/imp_str_', marker, '.GP.FORMAT', sep=''))
+    gp.filename <- file.path(base.dir, 'imputed_str',
+                             paste('imp_str_', marker, '.GP.FORMAT', sep=''))
 
     # Matching genotype (known) for A
     gt.filename <- str.f
@@ -182,6 +182,10 @@ true.greater.than.false <- function(mat){
 #'
 #' @export
 comp.match.acc <- function(mat) {
+    if (dim(mat)[1] != dim(mat)[2]) {
+        stop("The input match score matrix must be a square matrix.")
+    }
+
     #Remove anyone with missing data at all loci.
     mat <- mat[(rowSums(mat^2) != 0),(rowSums(mat^2) != 0)]
 
@@ -196,10 +200,10 @@ comp.match.acc <- function(mat) {
     #  Needle-in-hayatack matching
     onematch.acc <- mean(true.greater.than.false(mat))
 
-    return(data.frame('hungarian.acc'=hungarian.acc,
-                      'pickSTR.acc'=pickSTR.acc,
-                      'pickSNP.acc'=pickSNP.acc,
-                      'onematch.acc'=onematch.acc))
+    return(data.frame('one_to_one'=hungarian.acc,
+                      'SNPquery'=pickSTR.acc,
+                      'STRquery'=pickSNP.acc,
+                      'needle_in_haystack'=onematch.acc))
 }
 
 
