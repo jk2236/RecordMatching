@@ -20,7 +20,7 @@ library(RecordMatching)
 ```
 
 ## Overview
-This vignette demonstrates a step-by-step guideline for record-matching between SNP profiles to STR profiles when two samples are from the identical individual using linkage disequilibrium between samples. The method is based on [Kim et al. 2018](https://doi.org/10.1016/j.cell.2018.09.008).
+This vignette demonstrates a step-by-step guide for record-matching between SNP profiles to STR profiles when two samples are from the identical individual using linkage disequilibrium between samples. The method is based on [Kim et al. 2018](https://doi.org/10.1016/j.cell.2018.09.008).
 
 ## Setup
 ### External software requirements
