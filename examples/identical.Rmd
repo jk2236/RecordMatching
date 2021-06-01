@@ -1,5 +1,5 @@
 ---
-title: "Record matching of identical individuals"
+title: "Record matching of related individuals"
 # output: rmarkdown::pdf_document
 output: rmarkdown::html_document
 author: "Jaehee Kim"
@@ -21,6 +21,8 @@ library(RecordMatching)
 
 ## Overview
 This vignette demonstrates a step-by-step guide for record-matching between SNP profiles to STR profiles when two samples are from the identical individual using linkage disequilibrium between samples. The method is based on [Kim et al. 2018](https://doi.org/10.1016/j.cell.2018.09.008).
+
+Extensions to related individuals use the same pipeline as detailed in this vignette only with different input files. 
 
 ## Setup
 ### External software requirements
