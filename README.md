@@ -16,6 +16,8 @@ While the package can be run on any platform, it has been extensively tested on 
 * Human genetic maps. HapMap GrCh36 and GrCh37 genetic maps in PLINK format. Can be downloaded from [BEAGLE page](http://bochet.gcc.biostat.washington.edu/beagle/genetic_maps/).
 * All genotypes in the reference panel must be **non-missing and phased** for BEAGLE imputation. 
 
+Example dataset and genetic map files are included in the package for running [Example](https://github.com/jk2236/RecordMatching/tree/main/examples).
+
 ### Installation
 ```R
 if (!require("devtools")) {
