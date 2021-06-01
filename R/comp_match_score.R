@@ -109,7 +109,7 @@ comp.match.mat <- function(cott.vec, marker, str.f) {
     ## Step 2: Set imputation probabilities of genotypes unobserved in
     #  the training set to be min(training set GF, 0.005) and normalize
     #  imputatin probability vector to sum to 1.
-    hw.gf.min.mat <- matrix(rep(hw.gf.min, n.ppl), nrow=n.ppl, byrow=T)
+    hw.gf.min.mat <- matrix(rep(hw.gf.min, n.ppl), nrow=n.ppl, byrow=TRUE)
     scale.mat <- diag((1 - rowSums(hw.gf.min.mat * (val.gp == 0)))
                       / rowSums(val.gp))
     val.gp.scale <- scale.mat %*% val.gp
@@ -137,7 +137,7 @@ comp.match.mat <- function(cott.vec, marker, str.f) {
     #         the log-likelihood of match vs. non-match hypotheses.
 
     conditional.llmat <- log(apply(match.prob.mat, 1, "[", i=val.str.true.ind))
-    train.gf <- matrix(rep(hw.gf.vec, n.ppl), nrow=n.ppl, byrow=T)
+    train.gf <- matrix(rep(hw.gf.vec, n.ppl), nrow=n.ppl, byrow=TRUE)
     unconditional.llmat <- log(apply(train.gf, 1, "[", i=val.str.true.ind))
     lrmat <- conditional.llmat - unconditional.llmat
 

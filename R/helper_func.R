@@ -12,7 +12,7 @@ gt.to.ind <- function(gt){
     # Genotype to genotpe index.
     # Input is a vector (or data frame) of length two (or dim 1x2).
     # Output is an index (scalar) that correspond to the input genotype.
-    gt <- sort(gt, decreasing=T, na.last=T)
+    gt <- sort(gt, decreasing=TRUE, na.last=TRUE)
     ind <- gt[1] * (gt[1] + 1) / 2 + 1 + gt[2]
     return(ind)
 }
@@ -64,7 +64,7 @@ read.gt <- function(filename) {
 
     # stopifnot(strsplit(filename, "\\.")[[1]][2] == 'GT') # check input format
 
-    gt.str <- read.table(filename, head=T, as.is=T, na.strings=c("NA","-9"))
+    gt.str <- read.table(filename, head=TRUE, as.is=TRUE, na.strings=c("NA","-9"))
 
     if (length(which(strsplit(as.character(gt.str[3]), "")[[1]]=='|')) != 0) {
         split.char <- '|'
@@ -72,8 +72,8 @@ read.gt <- function(filename) {
         split.char <- '/'
     }
     gt.data <- matrix(as.numeric(unlist(sapply(gt.str[-c(1,2)], strsplit,
-                                               split=split.char, fixed=T))),
-                      ncol=2, byrow=T)
+                                               split=split.char, fixed=TRUE))),
+                      ncol=2, byrow=TRUE)
     return(gt.data)
 }
 
@@ -93,10 +93,10 @@ read.gp <- function(filename) {
     #       and position, respectively.
 
     # stopifnot(strsplit(filename, "\\.")[[1]][2] == 'GP') # check input format
-    gp.str <- read.table(filename, head=T, as.is=T, na.strings = c("NA","-9"))
+    gp.str <- read.table(filename, head=TRUE, as.is=TRUE, na.strings = c("NA","-9"))
     gp.data <- matrix(as.numeric(unlist(sapply(gp.str[-c(1,2)], strsplit,
-                                               split=",", fixed=T))),
-                      nrow=dim(gp.str)[2] - 2, byrow=T)
+                                               split=",", fixed=TRUE))),
+                      nrow=dim(gp.str)[2] - 2, byrow=TRUE)
     rownames(gp.data) <- names(gp.str)[-c(1,2)]
     return(gp.data)
 }

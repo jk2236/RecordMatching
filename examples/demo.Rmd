@@ -1,6 +1,5 @@
 ---
 title: "Record matching of related individuals"
-# output: rmarkdown::pdf_document
 output: rmarkdown::html_document
 author: "Jaehee Kim"
 date: "05/28/2021"
@@ -40,7 +39,7 @@ We first need to set the base directory where the output files of the record mat
 * `bgl.jar`: Path to `BEAGLE` jar file. Format is `(full path to dir)/beagle.(version).jar`. `(version)` is the Beagle version code (eg. “01Oct15.6a3”).
 * `vcf.exe`: Path to `vcftools` executable. Format is `(full path to dir)/vcftools`.
 
-The above variables will be used in all functions in the record-matching pipeline and is set by `setup` function. To run this vignette, set the environment variables in the `setup` function below:
+The above variables will be used in all functions in the record-matching pipeline and is set by `setup` function. To run this vignette, set the environment variables in the `setup` function below to user's own local paths:
 
 ```{r, setup}
 setup(base.dir='(path to local save directory)',
@@ -56,7 +55,7 @@ Each file should contain information about single STR locus and/or its surroundi
 * `snp.f`: A file containing SNP genotypes in 1-Mb SNP windows extending 500 kb in each direction from the STR midpoint. Must be in standard vcf format.
 * `str.f`: A file containing STR genotypes at a STR locus. Must be a a `GT` file format of `vcftools`. The first column should be a chromosome and the second column should be a marker genomic position. The sample data starts from the third column. The first row should be a header and the second row should be data. The genotype can be either a phased or unphased format.
 
-In addition, HapMap GrCh36, GrCh37, or GrCh38 genetic maps with cM units in PLINK format are required. Each file (`map.f`) should contain a map file of a single chromosome. They can be downloaded from the [BEAGLE web](http://bochet.gcc.biostat.washington.edu/beagle/genetic_maps/).
+In addition, HapMap GrCh36, GrCh37, or GrCh38 genetic maps with cM units in PLINK format are required. Each file (`map.f`) should contain a map info of a single chromosome. They can be downloaded from the [BEAGLE web](http://bochet.gcc.biostat.washington.edu/beagle/genetic_maps/).
 
 In this vignette, all the above files are provided as a package data. 
 
@@ -72,7 +71,7 @@ marker.info <- read.table(marker.f, header=TRUE, as.is=TRUE)
 kable(marker.info)
 ```
 
-One can include specific loci only by subsetting the `marker.info` as shown below. For a quick testing of the pipeline, start with one locus. 
+One can include specific loci only by subsetting the `marker.info` as shown in the example below. For a quick testing of the pipeline, start with one locus. 
 
 ```{r, eval=FALSE}
 loci.include <- c(3,5)
@@ -151,9 +150,7 @@ Three relatedness scenarios considered in [Kim et al. 2018](https://doi.org/10.1
 Here, we demonstrate the case $\mathbf{\Delta}_\text{test}=(0,0,1)$ when the true relationship is $\mathbf{\Delta}_\text{true}=(0,0,1)$. Other test hypothesis can be examined by updating `cott.vec` below. 
 
 ```{r, match-mat, results='hide'}
-cott.vec <- c(0,0,1) # same individual
-# cott.vec <- c(0,1,0) # parent-offspring
-# cott.vec <- c(0.25, 0.5, 0.25) # sib pairs
+cott.vec <- c(0,0,1) 
 
 llr.single.irt <- list()
 

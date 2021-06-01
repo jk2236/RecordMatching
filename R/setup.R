@@ -1,4 +1,4 @@
-#' Setup environmental variables.
+#' Set environmental variables.
 #'
 #' This function is meant to be run at the very beginning of the pipeline to set
 #' package environmental variables.
