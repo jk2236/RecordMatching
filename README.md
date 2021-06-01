@@ -4,7 +4,7 @@
 This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al.]((https://doi.org/10.1016/j.cell.2018.09.008)).
 
 ### Platform
-Tested on Mac only. 
+While the package can be run on any platform, it has been extensively tested on Mac only.
 
 ### System Requirements
 RecordMatching requires:
