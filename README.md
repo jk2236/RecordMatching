@@ -27,7 +27,7 @@ library(RecordMatching)
 ```
 
 ### Demo / examples
-* See [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
+* See the [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
 * The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.Rmd).
 
 ### Reference
