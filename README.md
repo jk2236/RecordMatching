@@ -9,7 +9,7 @@ While the package can be run on any platform, it has been extensively tested on 
 ### System Requirements
 * [BEAGLE 4.1](https://faculty.washington.edu/browning/beagle/b4_1.html) 
 * Java version 8 - required by BEAGLE. See [BEAGLE 4.1 manual](https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf) for details.
-* [VCFtools](https://github.com/vcftools/vcftools). If building from the source doesn't work, binary executible can be found [here](https://vcftools.github.io/).
+* [VCFtools](https://github.com/vcftools/vcftools). `conda` version is also available [here](https://anaconda.org/bioconda/vcftools).
 
 ### Dataset
 * HGDP SNP-STR data containing 872 individuals can be downloaded from [here](https://rosenberglab.stanford.edu/data/edgeEtAl2017/unphased_all_vcf.zip).
@@ -26,8 +26,8 @@ library(RecordMatching)
 ```
 
 ### Example
-* See the [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
-* The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.Rmd).
+* See the [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/demo.pdf). 
+* The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/demo.Rmd).
 
 ### Reference
 Kim J, Edge MD, Algee-Hewitt BFB, Li JZ, Rosenberg NA (2018). Statistical detection of relatives typed with disjoint forensic and biomedical loci. *Cell*, 175(3):848-858.e6. [https://doi.org/10.1016/j.cell.2018.09.008](https://doi.org/10.1016/j.cell.2018.09.008)
