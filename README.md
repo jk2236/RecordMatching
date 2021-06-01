@@ -27,8 +27,8 @@ library(RecordMatching)
 ```
 
 ### Demo / examples
-See package vignettes.
-
+* See [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
+* The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.Rmd).
 
 ### Reference
 Kim J, Edge MD, Algee-Hewitt BFB, Li JZ, Rosenberg NA (2018). Statistical detection of relatives typed with disjoint forensic and biomedical loci. *Cell*, 175(3):848-858.e6. [https://doi.org/10.1016/j.cell.2018.09.008](https://doi.org/10.1016/j.cell.2018.09.008)
