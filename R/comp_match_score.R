@@ -170,7 +170,7 @@ true.greater.than.false <- function(mat){
 #' @param mat A match score matrix
 #'
 #' @return A data frame containing accuracies under four matching schemes.
-#'         `hungarian.acc`, `pickSTR.acc`, `pickSNP.acc`, `onematch.acc`.
+#'         `one_to_one`, `SNPquery`, `STRquery`, `needle_in_haystack`.
 #'
 #' @details
 #'

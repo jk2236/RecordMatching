@@ -1,7 +1,7 @@
-
-#' Compute match accuracies.
+#' Setup environmental variables.
 #'
-#' insert desc
+#' This function is meant to be run at the very beginning of the pipeline to set
+#' package environmental variables.
 #'
 #' @param base.dir Full path of the base folder of the pipeline.
 #'                 All the output of the pipeline will be saved here.
@@ -13,10 +13,8 @@
 #'
 #' @return None
 #'
-#' @details
-#'
 #' @export
-setup <- function(base.dir, save.dir, bgl.jar, vcf.exe) {
+setup <- function(base.dir, bgl.jar, vcf.exe) {
     if (!require(clue)) {
         message("Required package 'clue' is missing. Installing now...")
         install.packages("clue")
@@ -25,8 +23,6 @@ setup <- function(base.dir, save.dir, bgl.jar, vcf.exe) {
         message("Required package 'plyr' is missing. Installing now...")
         install.packages("plyr")
     }
-
-
 
 
     if (!dir.exists(base.dir)) {

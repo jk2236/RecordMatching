@@ -2,9 +2,9 @@
 % Please edit documentation in R/setup.R
 \name{setup}
 \alias{setup}
-\title{Compute match accuracies.}
+\title{Setup environmental variables.}
 \usage{
-setup(base.dir, save.dir, bgl.jar, vcf.exe)
+setup(base.dir, bgl.jar, vcf.exe)
 }
 \arguments{
 \item{base.dir}{Full path of the base folder of the pipeline.
@@ -21,8 +21,6 @@ version is the Beagle version code (eg. “01Oct15.6a3”).}
 None
 }
 \description{
-insert desc
-}
-\details{
-
+This function is meant to be run at the very beginning of the pipeline to set
+package environmental variables.
 }

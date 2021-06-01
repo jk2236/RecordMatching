@@ -11,7 +11,7 @@ comp.match.acc(mat)
 }
 \value{
 A data frame containing accuracies under four matching schemes.
-\code{hungarian.acc}, \code{pickSTR.acc}, \code{pickSNP.acc}, \code{onematch.acc}.
+\code{one_to_one}, \code{SNPquery}, \code{STRquery}, \code{needle_in_haystack}.
 }
 \description{
 Compute match accuracies given a match score matrix under four schemes:
