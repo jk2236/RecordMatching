@@ -1,6 +1,7 @@
 ---
 title: "Record Marching of identical individuals"
 output: rmarkdown::pdf_document
+# output: rmarkdown::html_document
 author: "Jaehee Kim"
 date: "05/28/2021"
 vignette: >
@@ -27,7 +28,7 @@ In order to run the pipeline, there are two external software requires.
 
 * [BEAGLE 4.1](https://faculty.washington.edu/browning/beagle/b4_1.html) for phasing and imputation.
   Please note that `BEAGLE` requires Java version 8. See [BEAGLE manual](https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf) for details.
-* [VCFtools](https://github.com/vcftools/vcftools) for extracting necessary information from vcf files.
+* [VCFtools](https://github.com/vcftools/vcftools) for extracting necessary information from vcf files. If building from the source fail, binary executible can be found [here](https://vcftools.github.io/).
 
 
 ### Set environment variables
@@ -46,9 +47,9 @@ setup(base.dir='(path to local save directory)',
 ```
 
 
-To run this vignette, set the environment variables using `setup` function as shown below:
+To run this vignette, set the environment variables in the `setup` function below:
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 setup(base.dir='/Users/Shared/RM/twin_test',
       bgl.jar='/Users/Shared/RM/beagle.27Jan18.7e1.jar',
       vcf.exe='/usr/local/bin/vcftools')
