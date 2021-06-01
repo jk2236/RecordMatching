@@ -1,4 +1,4 @@
-## zzz.R (2009-01-12)
-##   Library Loading
+## zzz.R
+##   set env
 
 .RMEnv <- new.env()
