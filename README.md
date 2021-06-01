@@ -1,13 +1,12 @@
 # Record Matching
 
 ### Description
-**TBC**
+This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al]((https://doi.org/10.1016/j.cell.2018.09.008)). For a demonstration of the pipeline using the package, please see [Example](#example).
 
 ### Platform
-Tested on Mac and Linux only. 
+While the package can be run on any platform, it has been extensively tested on Mac only.
 
 ### System Requirements
-RecordMatching requires:
 * [BEAGLE 4.1](https://faculty.washington.edu/browning/beagle/b4_1.html) 
 * Java version 8 - required by BEAGLE. See [BEAGLE 4.1 manual](https://faculty.washington.edu/browning/beagle/beagle_4.1_21Jan17.pdf) for details.
 * [VCFtools](https://github.com/vcftools/vcftools). If building from the source doesn't work, binary executible can be found [here](https://vcftools.github.io/).
@@ -26,7 +25,7 @@ devtools::install_github("jk2236/RecordMatching")
 library(RecordMatching)
 ```
 
-### Demo / examples
+### Example
 * See the [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
 * The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.Rmd).
 
