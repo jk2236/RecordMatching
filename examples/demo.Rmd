@@ -40,21 +40,12 @@ We first need to set the base directory where the output files of the record mat
 * `bgl.jar`: Path to `BEAGLE` jar file. Format is `(full path to dir)/beagle.(version).jar`. `(version)` is the Beagle version code (eg. “01Oct15.6a3”).
 * `vcf.exe`: Path to `vcftools` executable. Format is `(full path to dir)/vcftools`.
 
-The above variables will be used in all functions in the record-matching pipeline and is set by `setup` function.  
+The above variables will be used in all functions in the record-matching pipeline and is set by `setup` function. To run this vignette, set the environment variables in the `setup` function below:
 
-```{r, setup, eval=FALSE}
+```{r, setup}
 setup(base.dir='(path to local save directory)',
       bgl.jar='(full path to dir)/beagle.(version).jar',
       vcf.exe='(full path to dir)/vcftools')
-```
-
-
-To run this vignette, set the environment variables in the `setup` function below:
-
-```{r, echo=TRUE}
-setup(base.dir='/Users/Shared/RM/twin_test',
-      bgl.jar='/Users/Shared/RM/beagle.27Jan18.7e1.jar',
-      vcf.exe='/usr/local/bin/vcftools')
 ```
 
 
