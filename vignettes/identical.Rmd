@@ -1,6 +1,6 @@
 ---
 title: "Record Marching of identical individuals"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 author: "Jaehee Kim"
 date: "05/28/2021"
 vignette: >
@@ -38,7 +38,7 @@ We first need to set the base directory where the output files of the record mat
 * `bgl.jar`: Path to `BEAGLE` jar file. Format is `(full path to dir)/beagle.(version).jar`. `(version)` is the Beagle version code (eg. “01Oct15.6a3”).
 * `vcf.exe`: Path to `vcftools` executable. Format is `(full path to dir)/vcftools`.
 
-The above variables will be used in all functions in the record-matching pipeline. To run this vignette, set the above environmenta variables using `setup` function:  
+The above variables will be used in all functions in the record-matching pipeline and is set by `setup` function.  
 
 ```{r, setup, eval=FALSE}
 setup(base.dir='(path to local save directory)',
@@ -46,6 +46,8 @@ setup(base.dir='(path to local save directory)',
       vcf.exe='(full path to dir)/vcftools')
 ```
 
+
+To run this vignette, set the environment variables using `setup` function as shown below:
 
 ```{r, echo=FALSE, message=FALSE, results='hide'}
 setup(base.dir='/Users/Shared/RM/twin_test',
@@ -96,7 +98,7 @@ If the reference panel is unphased, it must be phased first using `BEAGLE`. Any 
 
 From the STR-SNP reference panel, each STR marker's allele frequency is computed using `ref.al.freq` function. The output is saved to `(base.dir)/ref_alfrq` directory. Each marker's allele frequency file has `ref_(marker name).frq` format.
 
-```{r, phase, eval=FALSE, results='hide'}
+```{r, phase, eval=TRUE, results='hide'}
 for (m in marker.info$name) {
     ref.f <- system.file("extdata", "twin_test", "reference",
                          paste0("ref_", m, ".vcf"),
@@ -118,7 +120,7 @@ Note that **the reference panel must be phased and have no missing values** for 
 
 The imputed and phased SNP-STR vcf file is stored at `(base.dir)/imputed_str` where the `base.dir` was set by running `setup` at the beginning of the pipeline. From the imputed SNP-STR haplotype, the `impute.str` function also extracts imputed genotypes and genotype probabilities at the STR locus and save it in the `(base.dir)/imputed_str` folder. The output file name containing imputed genotypes probabilities is `imp_str_(marker name).GP.FORMAT`.
 
-```{r, eval=FALSE, results='hide'}
+```{r, eval=TRUE, results='hide'}
 for (i in 1:dim(marker.info)[1]) {
     m <- marker.info$name[i]
     chr <- marker.info$chr[i]
