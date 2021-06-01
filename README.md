@@ -1,7 +1,7 @@
 # Record Matching
 
 ### Description
-This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al.]((https://doi.org/10.1016/j.cell.2018.09.008)).
+This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al.]((https://doi.org/10.1016/j.cell.2018.09.008)). For a demonstration of the pipeline using the package, please see [Example](#example).
 
 ### Platform
 While the package can be run on any platform, it has been extensively tested on Mac only.
@@ -26,7 +26,7 @@ devtools::install_github("jk2236/RecordMatching")
 library(RecordMatching)
 ```
 
-### Demo / examples
+### Example
 * See the [example documentation](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.pdf). 
 * The corresponding knittable markdown file can be found at [here](https://github.com/jk2236/RecordMatching/blob/main/examples/identical.Rmd).
 
