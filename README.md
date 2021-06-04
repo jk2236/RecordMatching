@@ -1,7 +1,8 @@
 # Record Matching
 
 ### Description
-This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al](https://doi.org/10.1016/j.cell.2018.09.008). The pipeline starts with a set of reference files containing SNP-STR genotypes on reference individuals, a set of files containing STR profiles only on test individuals, a set of files containing SNP profiles only on test individuals, and a set of genetic map files. It outputs a match-score matrix for all STR-SNP pairs, with rows indicating STR profiles and columns indicating SNP profiles. The package also includes a function that processes the match-score matrix. For a demonstration of the pipeline using the package, please see [Example](#example).
+This `R` package contains tools for performing record matching of pairs of genetic profiles, as described in [Kim et al](https://doi.org/10.1016/j.cell.2018.09.008). The pipeline starts with a set of reference files containing SNP-STR genotypes on reference individuals, a set of files containing STR profiles only on test individuals, a set of files containing SNP profiles only on test individuals, and a set of genetic map files. It outputs a match-score matrix for all STR-SNP pairs, with rows indicating STR profiles and columns indicating SNP profiles. The package also includes a function that processes the match-score matrix. For a demonstration of the pipeline using the package, please see [Example](#example).
+
 
 ### Platform
 This is an R package that can work in any platform that makes use of R. 
@@ -33,3 +34,5 @@ library(RecordMatching)
 
 ### Reference
 Kim J, Edge MD, Algee-Hewitt BFB, Li JZ, Rosenberg NA (2018). Statistical detection of relatives typed with disjoint forensic and biomedical loci. *Cell*, 175(3):848-858.e6. [https://doi.org/10.1016/j.cell.2018.09.008](https://doi.org/10.1016/j.cell.2018.09.008)
+
+Edge MD, Algee-Hewitt BFB, Pemberton TJ, Li JA, Rosenberg NA (2017). Linkage disequilibrium matches forensic genetic records to disjoint genomic marker sets. *PNAS* 114(22):5671-5676. [https://doi.org/10.1073/pnas.1619944114](https://doi.org/10.1073/pnas.1619944114)
