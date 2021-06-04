@@ -1,7 +1,7 @@
 # Record Matching
 
 ### Description
-This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al](https://doi.org/10.1016/j.cell.2018.09.008). For a demonstration of the pipeline using the package, please see [Example](#example).
+This `R` package contains necessary tools for performing record matching of pairs of profiles that belong to relatives when the query and database rely on nonoverlapping genetic markers leveraging genomic linkage disequilibrium. The detailed description of the method can be found at [Kim et al](https://doi.org/10.1016/j.cell.2018.09.008). The pipeline starts with a set of reference files containing SNP-STR genotypes on reference individuals, a set of files containing STR profiles only on test individuals, a set of files containing SNP profiles only on test individuals, and a set of genetic map files. It outputs a match-score matrix for all STR-SNP pairs, with rows indicating STR profiles and columns indicating SNP profiles. The package also includes a function that processes the match-score matrix. For a demonstration of the pipeline using the package, please see [Example](#example).
 
 ### Platform
 This is an R package that can work in any platform that makes use of R. 
